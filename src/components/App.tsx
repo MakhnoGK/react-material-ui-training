@@ -1,20 +1,23 @@
 import React from 'react';
-import { Button, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
-import useStyles from '../styled/app';
+import { GradientButton } from '../styled';
+import { Clock } from '.';
 
 const App = () => {
-  const classes = useStyles();
-
   return (
     <>
-      <Typography variant="h3" className={classes.centeredText}>
+      <Typography variant="h3">
         React App with Material UI
       </Typography>
 
-      <Button className={classes.gradientButton}>Button</Button>
+      <GradientButton>With Styled Components API</GradientButton>
+
+      <Clock />
     </>
   );
 };
+
+App.propTypes = {};
 
 export default App;
