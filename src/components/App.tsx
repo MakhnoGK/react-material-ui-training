@@ -1,19 +1,15 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
-
-import { GradientButton } from '../styled';
-import { Clock } from '.';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const App = () => {
   return (
     <>
-      <Typography variant="h3">
-        React App with Material UI
-      </Typography>
-
-      <GradientButton>With Styled Components API</GradientButton>
-
-      <Clock />
+      <Box color="secondary">
+        {(props: TypographyProps) => (
+          <Typography {...props}>Overwritten styles from Box</Typography>
+        )}
+      </Box>
     </>
   );
 };
