@@ -1,20 +1,46 @@
-import React from 'react';
-import { Typography } from '@material-ui/core';
-
-import { GradientButton } from '../styled';
-import { Clock } from '.';
+import React, { useState, useEffect } from 'react';
+import {
+  Button,
+  Typography,
+  ThemeProvider,
+  createMuiTheme,
+  Paper,
+} from '@material-ui/core';
 
 const App = () => {
+  const [currentTheme, setCurrentTheme] = useState<typeof theme.palette.type>(
+    'light'
+  );
+
+  const theme = createMuiTheme({
+    palette: {
+      type: currentTheme,
+    },
+  });
+
+  useEffect(() => {
+    theme.palette.type = currentTheme;
+  }, [currentTheme]);
+
   return (
-    <>
-      <Typography variant="h3">
-        React App with Material UI
-      </Typography>
+    <ThemeProvider theme={theme}>
+      <Paper>
+        <select
+          value={currentTheme}
+          onChange={(e) =>
+            setCurrentTheme(e.target.value as typeof theme.palette.type)
+          }
+        >
+          <option value="dark">dark</option>
+          <option value="light">light</option>
+        </select>
 
-      <GradientButton>With Styled Components API</GradientButton>
-
-      <Clock />
-    </>
+        <Typography>This is themed Paper component</Typography>
+        <Button variant="contained" color="primary">
+          Click me
+        </Button>
+      </Paper>
+    </ThemeProvider>
   );
 };
 
